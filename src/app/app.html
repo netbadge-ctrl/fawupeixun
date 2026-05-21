@@ -1,0 +1,864 @@
+<div class="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-indigo-100 selection:text-indigo-900 pb-20">
+  <!-- 简洁精致顶部导航 -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md">
+          <mat-icon class="text-lg">auto_awesome</mat-icon>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-xl sm:text-2xl text-slate-900 tracking-tight">
+            KSCC <span class="text-indigo-600 font-medium">| 法务数字助理实践指南</span>
+          </h1>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-sm text-slate-600 font-semibold">企业数字化专属培训课程</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 大尺寸自适应双栏布局 -->
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col lg:flex-row gap-12 mt-10">
+    
+    <!-- 左侧快捷投影大纲导航 -->
+    <aside class="w-full lg:w-72 flex-shrink-0">
+      <div class="sticky top-28 bg-white border border-slate-200/80 p-6 rounded-3xl flex flex-col gap-2 shadow-sm">
+        <h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-4 px-2">培训投影演示大纲</h3>
+        
+        <button id="btn-intro" (click)="scrollTo('intro')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-base text-left transition-all duration-200"
+                [class]="activeSection() === 'intro' ? 'bg-indigo-600 border border-indigo-700 text-white font-bold shadow-md shadow-indigo-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950 border border-transparent'">
+          <mat-icon class="text-[20px] w-[20px] h-[20px]" [class]="activeSection() === 'intro' ? 'text-white' : 'text-slate-400'">lightbulb</mat-icon>
+          01 认知破冰
+        </button>
+
+        <button id="btn-scenarios" (click)="scrollTo('scenarios')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-base text-left transition-all duration-200"
+                [class]="activeSection() === 'scenarios' ? 'bg-indigo-600 border border-indigo-700 text-white font-bold shadow-md shadow-indigo-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950 border border-transparent'">
+          <mat-icon class="text-[20px] w-[20px] h-[20px]" [class]="activeSection() === 'scenarios' ? 'text-white' : 'text-slate-400'">layers</mat-icon>
+          02 递进应用三阶段
+        </button>
+
+        <button id="btn-skills" (click)="scrollTo('skills')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-base text-left transition-all duration-200"
+                [class]="activeSection() === 'skills' ? 'bg-indigo-600 border border-indigo-700 text-white font-bold shadow-md shadow-indigo-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950 border border-transparent'">
+          <mat-icon class="text-[20px] w-[20px] h-[20px]" [class]="activeSection() === 'skills' ? 'text-white' : 'text-slate-400'">build</mat-icon>
+          03 打造专属技能
+        </button>
+
+        <button id="btn-security" (click)="scrollTo('security')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-base text-left transition-all duration-200 mt-4 border-t border-slate-100 pt-4"
+                [class]="activeSection() === 'security' ? 'bg-amber-600 border border-amber-700 text-white font-bold shadow-md shadow-amber-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950 border border-transparent'">
+          <mat-icon class="text-[20px] w-[20px] h-[20px]" [class]="activeSection() === 'security' ? 'text-white' : 'text-slate-400'">security</mat-icon>
+          04 合规与安全红线
+        </button>
+
+        <button id="btn-practice" (click)="scrollTo('practice')" class="w-full flex items-center gap-3.5 px-4 py-3 rounded-2xl text-base text-left transition-all duration-200"
+                [class]="activeSection() === 'practice' ? 'bg-emerald-600 border border-emerald-700 text-white font-bold shadow-md shadow-emerald-100' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-950 border border-transparent'">
+          <mat-icon class="text-[20px] w-[20px] h-[20px]" [class]="activeSection() === 'practice' ? 'text-white' : 'text-slate-400'">assignment</mat-icon>
+          05 分步实战大冲关
+        </button>
+      </div>
+    </aside>
+
+    <!-- 主体投影内容：大幅增加字号与版式多样性，极其利于视力与投屏 -->
+    <main class="flex-1 py-1 space-y-16">
+      
+      <!-- 主标题与概述：大气开阔的中式左排版 -->
+      <div id="welcome-header" class="border-l-4 border-indigo-600 pl-8 py-4 space-y-6">
+        <span class="text-sm font-bold tracking-widest uppercase text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-md">
+          面向非技术建立者的基础实效课件
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 leading-tight">
+          KSCC 快速上手：构建您的法务数字助理
+        </h1>
+        <p class="text-slate-600 text-lg sm:text-xl leading-relaxed max-w-4xl font-normal">
+          专为法务部门与合规专家设计的实务指南。教您如何简易无痛、快速上手指挥智能助理，高效解决复杂的日常合同审查、条款差异比对与合规自审流程自建。
+        </p>
+      </div>
+
+      <!-- 模块 01：认知破冰 (采用生动的高质量 Q&A 研讨排布) -->
+      <section id="intro" class="scroll-mt-28 space-y-8">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">01</div>
+          <h2 class="text-3xl font-black tracking-tight text-slate-950">最近经常被问到的三个问题</h2>
+        </div>
+        
+        <p class="text-slate-600 text-lg sm:text-xl leading-relaxed max-w-4xl font-normal">
+          在推进团队数字化协同与智能体常驻应用时，业务干骨与决策层常有各种关于“技术重叠”、“学习跨度”的疑虑。我们在此直面顾虑，用大白话为您一针见血地解答最核心的三个焦点：
+        </p>
+
+        <div class="space-y-8">
+          
+          <!-- 问题 01 卡片 -->
+          <div class="bg-white border border-slate-200 rounded-[2.5rem] p-8 sm:p-10 space-y-6 shadow-sm relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 font-normal">
+              <div class="flex items-center gap-3.5">
+                <span class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-extrabold text-lg select-none">Q1</span>
+                <h3 class="font-black text-slate-950 text-xl sm:text-2xl">我对编写代码、系统硬件一窍不通，真的能靠它填平专业鸿沟吗？</h3>
+              </div>
+            </div>
+            
+            <div class="space-y-4 text-slate-700 text-base sm:text-lg leading-relaxed font-normal">
+              <p>
+                <strong>核心解答：</strong>以前，我们要将一个绝妙的法务业务设想落地，要依托于产研部门反复进行需求沟通等开发排期，然后再不断地系统升级很多版才能满足业务诉求。而有了 KSCC 这样的智能体，<strong>产品研发这道高阻隔的“技能鸿沟”已被逐渐填平！</strong>
+              </p>
+              <p>
+                哪怕您是毫无 IT 或者工程研发背景的纯法务、合规部门专家，只要用口头普通话下达对文件系统的指引意图，幕后便有 AI 替您自动建立执行流、操作本地大表格。这就是<strong>智能体带来的制造力终极平权</strong>。
+              </p>
+              
+              <div class="p-6 bg-indigo-50/50 rounded-2xl border border-indigo-100 text-slate-800 font-medium space-y-1">
+                <p class="text-[17px] leading-relaxed">
+                  💡 <strong>然而需要强调的是，专业认知与审美才是黄金标准：</strong>
+                </p>
+                <p class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed mt-1">
+                  工具抹平了技能鸿沟，但行业眼光、专业常识与合规评判底限，在 AI 浪潮中就越是转变成了最卓越的资产。在<strong>“评判 AI 输出是否严密审慎”</strong>、<strong>“条款格式是否绝对契合业务红线”</strong>、<strong>“报告提炼是否具备法理调性”</strong>等高级定性层面上，依然对个人职业功底有着强烈的考验。您的专业评判与审美，才是整条智能化生产流中最值钱的部分。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 问题 02 卡片 -->
+          <div class="bg-slate-950 text-slate-100 rounded-[2.5rem] p-8 sm:p-10 space-y-6 shadow-xl relative overflow-hidden border border-slate-800">
+            <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl select-none"></div>
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800 relative z-10">
+              <div class="flex items-center gap-3.5">
+                <span class="w-10 h-10 rounded-xl bg-white/10 text-cyan-400 flex items-center justify-center font-extrabold text-lg select-none">Q2</span>
+                <h3 class="font-black text-white text-xl sm:text-2xl">OpenClaw 和 KSCC 有什么不同？</h3>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-2 relative z-10 text-base sm:text-lg leading-relaxed">
+              <!-- 左侧 -->
+              <div class="space-y-3 bg-white/5 border border-white/5 p-6 rounded-2xl">
+                <h4 class="font-bold text-amber-300 text-lg flex items-center gap-2">
+                  <mat-icon class="text-amber-400">tune</mat-icon> OpenClaw（特定条件下的固定动作者）
+                </h4>
+                <p class="text-sm sm:text-base text-slate-400 font-normal">
+                  这类工具更侧重于在<strong>一些特定条件下的相对固定动作的触发和内容生成</strong>。例如，设定好某条规则去翻译一页文本、或纯粹填入固定数据模板进行单次生成。它们在流程上相对固定和静态，遇到报错时会自动停下来让您手动介入，不具备主动试错和自我纠正能力。
+                </p>
+              </div>
+              
+              <!-- 右侧 -->
+              <div class="space-y-3 bg-indigo-950/40 border border-indigo-500/15 p-6 rounded-2xl border-l-4 border-l-indigo-500">
+                <h4 class="font-bold text-cyan-400 text-lg flex items-center gap-2">
+                  <mat-icon class="text-cyan-400">rocket_launch</mat-icon> KSCC（创造性与全自动执行者）
+                </h4>
+                <p class="text-sm sm:text-base text-slate-300 font-normal">
+                  它则更具<strong>创造性和自动化执行能力</strong>，是一个真正的闭环任务智能体。它能在本地环境大范围穿透多层文件、自发进行深度的条件索引与比对。最不可思议的是它的<strong>自愈与探查纠偏能力</strong>：在后台把数据跑起来如果遇到任何异常报错，它会像一个资深技术官或有经验的律师一样，自发读取报错、追溯根因、重新推演代码并在不需要您时刻下命令的情况下多次实验，直至把结果完美全自动修正后再交卷。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 问题 03 卡片 -->
+          <div class="bg-amber-50/40 border border-amber-100 rounded-[2.5rem] p-8 sm:p-10 space-y-6 shadow-sm relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-amber-100/60">
+              <div class="flex items-center gap-3.5">
+                <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-extrabold text-lg select-none">Q3</span>
+                <h3 class="font-black text-slate-950 text-xl sm:text-2xl">从一个外行，到负责 KSCC 产品，这个经验的储备花了多久？</h3>
+              </div>
+            </div>
+            
+            <div class="space-y-4 text-slate-705 text-base sm:text-lg leading-relaxed font-normal">
+              <p>
+                <strong>真实的时间成本：</strong>我整整付出了将近 <strong>1 年</strong> 的时间，在无数个反复试错、熬夜调试中掏空了极度巨大的个人心力。
+              </p>
+              <p>
+                因为在 1 年以前，市面上针对 <strong>Vibe Coding</strong>（氛围感编程：即完全用直觉与自然语言操纵软件建造）的干货材料几乎是空白的。我们只能在混沌中摸索，经历了无数次代码崩溃，逐渐总结出一套非研发人员可以如何用好 AI 工具的实战经验。
+              </p>
+              <p class="text-amber-950/80 font-bold bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-2xl text-[17px] leading-relaxed">
+                🎁 <strong>帮您把这个“折磨期”缩短至几小时：</strong><br>
+                <span class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed mt-1 block">
+                  这也是我打磨这本指南的初衷——我们将这一整年的实战经验与避坑诀窍总结出来，供您和法务团队直接跨越摸索期，在几小时内轻松获得“所说即可见”的 Vibe Coding 掌控感与成就感！
+                </span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 模块 02：应用发展三阶段 -->
+      <section id="scenarios" class="scroll-mt-28 space-y-10">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">02</div>
+          <h2 class="text-3xl font-black tracking-tight text-slate-950">应用发展三阶段 —— 从轻量对话到自建工具</h2>
+        </div>
+        
+        <p class="text-slate-600 text-lg leading-relaxed font-normal max-w-4xl">
+          为了便于团队投屏学习和吸收，我们将其实践路径由浅入深分为三个核心阶段，并在每个阶段中为您提供最具代表性的<strong>法务实操演练场景组合</strong>：
+        </p>
+
+        <!-- ======================= 第一阶段 ======================= -->
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-slate-900 pb-4">
+            <h3 class="text-xl sm:text-2xl font-black text-slate-950 flex items-center gap-3">
+              <span class="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
+              第一阶段：轻量知识咨询（无文件读取）
+            </h3>
+          </div>
+          <p class="text-base text-slate-500 font-normal">
+            <strong>场景形态：</strong>不依赖任何外部及本地材料。用于概念澄清、理清法律条约、草拟简单的合规性框架声明等。
+          </p>
+          
+          <!-- 并排对话案例 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+            <!-- 法务实践 A -->
+            <div class="bg-indigo-50/40 border-l-4 border-indigo-600 p-6 sm:p-8 rounded-r-3xl flex flex-col space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center gap-2.5 text-slate-900 font-extrabold text-base tracking-wider">
+                  <span class="p-1.5 bg-indigo-100/80 text-indigo-700 rounded-lg flex items-center"><mat-icon class="text-base">gavel</mat-icon></span>
+                  <span>法务实操 A · 境外出海数据合规对标</span>
+                </div>
+                <!-- 拟人化气泡提问 -->
+                <div class="relative bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+                  <div class="absolute top-4 -left-2.5 w-3 h-3 bg-white border-l border-b border-indigo-200 rotate-45"></div>
+                  <p class="text-slate-400 font-bold text-xs mb-1.5 uppercase font-mono tracking-wider">在终端中直接输入：</p>
+                  <p class="text-slate-900 text-base sm:text-lg leading-relaxed font-medium italic">
+                    “请帮我清晰梳理《数据安全法》与欧盟《GDPR》里关于‘重要数据境外传输与存储阈值’的核心出海合规门槛差异。我们作为云服务商有何合规建议？”
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 法务实践 B -->
+            <div class="bg-slate-50 border-l-4 border-slate-500 p-6 sm:p-8 rounded-r-3xl flex flex-col space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center gap-2.5 text-slate-900 font-extrabold text-base tracking-wider">
+                  <span class="p-1.5 bg-slate-200/80 text-slate-800 rounded-lg flex items-center"><mat-icon class="text-base">balance</mat-icon></span>
+                  <span>法务实操 B · 违约责任与格式条款法理释义</span>
+                </div>
+                <!-- 拟人化气泡提问 -->
+                <div class="relative bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+                  <div class="absolute top-4 -left-2.5 w-3 h-3 bg-white border-l border-b border-indigo-250 rotate-45"></div>
+                  <p class="text-slate-400 font-bold text-xs mb-1.5 uppercase font-mono tracking-wider">在终端中直接输入：</p>
+                  <p class="text-slate-900 text-base sm:text-lg leading-relaxed font-medium italic">
+                    “在民商事合同中，‘定金罚则’与‘违约金条款’同时主张时，法院一般的审判裁量倾向是什么？定金上限在法律规范中是否有强制比例红线？”
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======================= 第二阶段 ======================= -->
+        <div class="space-y-6 pt-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-slate-900 pb-4">
+            <h3 class="text-xl sm:text-2xl font-black text-slate-950 flex items-center gap-3">
+              <span class="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
+              第二阶段：文档解读与交叉比对（读取本地文件）
+            </h3>
+          </div>
+          <p class="text-base text-slate-500 font-normal">
+            <strong>场景形态：</strong>使用 <code class="bg-indigo-50 text-indigo-700 px-1.5 py-0.5 rounded font-mono font-bold">@</code> 符号轻松引入本地的意向合同Word、草签文件txt或历年诉讼卷宗大文档，进行深度审查与条款比对。
+          </p>
+          
+          <!-- 并排对话案例 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+            <!-- 法务实践 A -->
+            <div class="bg-indigo-50/40 border-l-4 border-indigo-600 p-6 sm:p-8 rounded-r-3xl flex flex-col space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center gap-2.5 text-slate-900 font-extrabold text-base tracking-wider">
+                  <span class="p-1.5 bg-indigo-100/80 text-indigo-700 rounded-lg flex items-center"><mat-icon class="text-base">gavel</mat-icon></span>
+                  <span>法务实操 A · 供应端多渠道合同版本交叉比对</span>
+                </div>
+                <!-- 拟人化气泡提问 -->
+                <div class="relative bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+                  <div class="absolute top-4 -left-2.5 w-3 h-3 bg-white border-l border-b border-indigo-200 rotate-45"></div>
+                  <p class="text-slate-400 font-bold text-xs mb-1.5 uppercase font-mono tracking-wider">在终端中直接输入：</p>
+                  <p class="text-slate-900 text-base sm:text-lg leading-relaxed font-medium italic">
+                    “请仔细校查 <span class="bg-indigo-100 font-mono text-xs px-1.5 py-0.5 rounded font-bold">@采购通用合同模板.docx</span> 与 <span class="bg-indigo-100 font-mono text-xs px-1.5 py-0.5 rounded font-bold">@本期供应商回执条款.txt</span>，重点排查其对违约金赔偿上限、知识产权专利共有条款等有无私自删改，并一键标红输出比对差异总结。”
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 法务实践 B -->
+            <div class="bg-slate-50 border-l-4 border-slate-600 p-6 sm:p-8 rounded-r-3xl flex flex-col space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center gap-2.5 text-slate-900 font-extrabold text-base tracking-wider">
+                  <span class="p-1.5 bg-slate-200/80 text-slate-800 rounded-lg flex items-center"><mat-icon class="text-base">assignment_turned_in</mat-icon></span>
+                  <span>法务实操 B · 大型历史规章与合规条例探针审查</span>
+                </div>
+                <!-- 拟人化气泡提问 -->
+                <div class="relative bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+                  <div class="absolute top-4 -left-2.5 w-3 h-3 bg-white border-l border-b border-slate-200 rotate-45"></div>
+                  <p class="text-slate-400 font-bold text-xs mb-1.5 uppercase font-mono tracking-wider">在终端中直接输入：</p>
+                  <p class="text-slate-900 text-base sm:text-lg leading-relaxed font-medium italic">
+                    “对照我国最新施行的司法解释，检索本地文件 <span class="bg-slate-100 font-mono text-xs px-1.5 py-0.5 rounded font-bold">@集团历史合规守则.txt</span>，找出所有在‘关联交易审批’与‘利益冲突申报’上不符合新规要求的法律红线问题，并提出重修草案建议。”
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======================= 第三阶段 ======================= -->
+        <div class="space-y-6 pt-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b-2 border-slate-900 pb-4">
+            <h3 class="text-xl sm:text-2xl font-black text-slate-950 flex items-center gap-3">
+              <span class="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
+              第三阶段：从零开始构建属于您自己的网页工具
+            </h3>
+          </div>
+          
+          <p class="text-lg text-slate-600 leading-relaxed font-normal max-w-4xl">
+            建立一个内网对账、文件抽取或者合同清单小工具并不是研发部门的专利。借助 KSCC，您可以根据受众和需求的演进，采取由浅入深、先前端、后接口、再后端的<strong>自建工具“无痛三步走”上手路径</strong>，从零开始搭建出完美解决部门痛点的专属业务网页工具：
+          </p>
+
+          <!-- 第三阶段必备前置钥匙：GitHub 账号 (移至此最契合场景) -->
+          <div class="mt-8 bg-white border border-slate-200 rounded-[2rem] p-8 space-y-6 max-w-4xl shadow-sm">
+            <div class="flex items-center gap-2.5 text-slate-900 border-b border-slate-100 pb-4">
+              <mat-icon class="text-indigo-600 text-[26px] w-[26px] h-[26px]">account_circle</mat-icon>
+              <span class="font-extrabold text-xl">💡 核心准备工作：开发起步为什么绝对需要一个 GitHub 账号？</span>
+            </div>
+            <p class="text-slate-600 text-base leading-relaxed font-normal">
+              当步入真正的<strong>应用系统开发与定制化技能阶段</strong>（例如搭建自己的法务小网页、联网下载他人写好的高级 Skill 技能包时），您会被要求准备一个 <strong>GitHub 账号</strong>。对于没有任何代码经验 of 非技术骨干来说，GitHub 账号是启动智能体数字转型的“黄金钥匙”：
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+              <!-- 原因 1 -->
+              <div class="space-y-2 p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+                <span class="text-xs font-extrabold tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded uppercase font-mono">联网拉取</span>
+                <h5 class="font-bold text-slate-950 text-base flex items-center gap-1">一键安装全球技能</h5>
+                <p class="text-sm text-slate-600 leading-normal font-normal">
+                  由官方或开源社区维护的顶级 Skill 都托管在 GitHub 上。通过它，您无需记忆底层的安装参数，直接对 KSCC 吩咐 <code>“帮我把https://github.com/anthropics/skills 这个技能安装好”</code> 即有幕后 AI 替您自动识别安装！
+                </p>
+              </div>
+              <!-- 原因 2 -->
+              <div class="space-y-2 p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+                <span class="text-xs font-extrabold tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded uppercase font-mono">版本保护</span>
+                <h5 class="font-bold text-slate-950 text-base flex items-center gap-1">时光机回退不怕错</h5>
+                <p class="text-sm text-slate-600 leading-normal font-normal">
+                  当辅助您在后台多次修改页面与小数据库时，它基于 Git 命令对每一次操作做了切片。即使您把刚生成的数据看板弄崩溃了，也能凭它的版本保护瞬间秒级一键完美复位，毫无后顾之忧。
+                </p>
+              </div>
+              <!-- 原因 3 -->
+              <div class="space-y-2 p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+                <span class="text-xs font-extrabold tracking-wider text-purple-700 bg-purple-50 px-2.5 py-1 rounded uppercase font-mono">一秒共享</span>
+                <h5 class="font-bold text-slate-950 text-base flex items-center gap-1">零部署门槛上线网页</h5>
+                <p class="text-sm text-slate-600 leading-normal font-normal">
+                  有了这个账号，您生成的账目对照网页大屏不仅可以独自查看，还可以使用 GitHub 的公共发布环境将本地文件打包在线运行，无成本把链接派发给法务同事或财务同事在线一键对账。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 三大上手阶段：打破传统小卡片形态，采用富有设计感的垂直大步骤时间轴 -->
+          <div class="relative pl-8 sm:pl-12 border-l border-indigo-200 space-y-12">
+            
+            <!-- 大时间轴圆圈 1 -->
+            <div class="relative">
+              <div class="absolute -left-[53px] top-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">1</div>
+              <div class="space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded">极简起步</span>
+                <h4 class="text-xl font-bold text-slate-950 flex items-center gap-2">
+                  <span>🎨</span> 第一步：纯前端交互界面设计（看眼见心的“漂亮皮囊”）
+                </h4>
+                <p class="text-base text-slate-600 leading-relaxed font-normal max-w-4xl">
+                  吩咐 KSCC 在本地为您建立一个 <code class="bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded font-mono font-bold text-sm">index.html</code> 页面。您只需要直接口头提出设想（例如：“给我设计一个极致清爽的‘合同拖拽上传框’外加一个‘合同条款差异表格’”）。双击该文件便能立即在浏览器中一睹精致的动态布局，代码神秘感彻底消融。
+                </p>
+                <div class="bg-slate-900 text-indigo-200 font-mono text-base px-5 py-3 rounded-xl max-w-4xl">
+                  提示词：“帮我写一个干净漂亮的合同审查拖拽前端 HTML 界面，带进度按钮和表格”
+                </div>
+              </div>
+            </div>
+
+            <!-- 大时间轴圆圈 2 -->
+            <div class="relative">
+              <div class="absolute -left-[53px] top-0 w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">2</div>
+              <div class="space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-teal-700 bg-teal-50 px-2.5 py-1 rounded">连接脑力</span>
+                <h4 class="text-xl font-bold text-slate-950 flex items-center gap-2">
+                  <span>🔌</span> 第二步：通过脚本对接大模型接口（注入活生生的“智能大脑”）
+                </h4>
+                <p class="text-base text-slate-600 leading-relaxed font-normal max-w-4xl">
+                  让助手帮您在此前端代码中轻松接入标准的网络 API 服务。当您或您的下属在网页里将多份条款丢入上传框并点击“开始审查”按钮时，浏览器便会自动将内容传送去分析，并在下方表格精准展示详细的违背及潜在风险偏差。
+                </p>
+                <div class="bg-slate-900 text-teal-200 font-mono text-base px-5 py-3 rounded-xl max-w-4xl">
+                  提示词：“在 index.html 注入标准 API 获取与数据提炼逻辑，实现页面与脑力的对接交互”
+                </div>
+              </div>
+            </div>
+
+            <!-- 大时间轴圆圈 3 -->
+            <div class="relative">
+              <div class="absolute -left-[53px] top-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-md">3</div>
+              <div class="space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-purple-700 bg-purple-50 px-2.5 py-1 rounded">入库归档</span>
+                <h4 class="text-xl font-bold text-slate-950 flex items-center gap-2">
+                  <span>🗄️</span> 第三步：建立专属后端与数据库持久化（保障每一次分析都有迹可查）
+                </h4>
+                <p class="text-base text-slate-600 leading-relaxed font-normal max-w-4xl">
+                  当工具需要历史台账备份或团队多位干系人共同登记时，可让 AI 帮您配置一个轻便运行的服务器脚本 (<code class="bg-slate-100 text-slate-900 px-1.5 py-0.5 rounded font-mono font-bold text-sm">server.js</code>) 和极简 SQLite 本地数据库。每一次合同审查和合规分析的数据日志均会自动在数据库长期留痕保管。
+                </p>
+                <div class="bg-slate-900 text-purple-200 font-mono text-base px-5 py-3 rounded-xl max-w-4xl">
+                  提示词：“帮我生成 server.js 后端程序，并使用 SQLite 数据库永久存储每次分析的数据日志”
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 模块 03：打造专属技能 -->
+      <section id="skills" class="scroll-mt-28 space-y-10">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-650 text-white flex items-center justify-center font-bold text-lg shadow-sm">03</div>
+          <h2 class="text-3xl font-black tracking-tight text-slate-950">进阶技能 —— 一旦配置，一劳永逸</h2>
+        </div>
+        
+        <p class="text-slate-600 text-lg sm:text-xl leading-relaxed font-normal max-w-4xl">
+          如果您的双语合同归纳、合规要点自审是每月固定的标准化作业（SOP/守则），那么千万不要每天手动重复输入同样的背景提示。您可以将部门规范和要求永久打包配置为助理的“常驻技能（Skill）”：
+        </p>
+
+        <!-- 技能核心概念：大型并排概念对齐 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white border-2 border-indigo-100 p-8 rounded-[2rem] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 text-indigo-900 font-black text-lg mb-4">
+                <div class="p-2 bg-indigo-50 text-indigo-700 rounded-xl"><mat-icon class="text-[24px]">psychology</mat-icon></div>
+                <span>什么是常驻自定义命令(Skill)？</span>
+              </div>
+              <p class="text-base text-slate-600 leading-relaxed font-normal">
+                它是专门属于您的<strong>“岗位业务极速快捷键”</strong>。不需要一遍遍地交代合同违约金怎么写、知识产权归属怎么定。成功注册后，今后只需在终端极简地一键输入如 <code class="bg-slate-100 text-slate-900 px-1 py-0.5 rounded font-mono font-bold text-sm">/check_contract</code>，助理便会根据既定标准默默批量自审。
+              </p>
+            </div>
+          </div>
+          
+          <div class="bg-white border-2 border-emerald-100 p-8 rounded-[2rem] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 text-emerald-950 font-black text-lg mb-4">
+                <div class="p-2 bg-emerald-50 text-emerald-700 rounded-xl"><mat-icon class="text-[24px]">download</mat-icon></div>
+                <span>如何直接套用他人做好的技能包？</span>
+              </div>
+              <p class="text-base text-slate-600 leading-relaxed font-normal">
+                极简、无痛：部门里合规专家或外部顾问会将一揽子法律核查规则和模板存成一个配置文件（例如 <code class="bg-slate-100 text-slate-900 px-1 py-0.5 rounded font-mono font-bold text-sm">合同自审规则.json</code>）。您直接拷贝到项目，并吩咐助理一句话：“把 @合同自审规则.json 配置为我本机的专属快捷技能”即可。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 推荐市面优质 Skill 版块 -->
+        <div class="bg-white border border-slate-200 p-8 sm:p-10 rounded-[2.5rem] space-y-8 shadow-sm">
+          <div class="border-b border-slate-100 pb-5">
+            <h3 class="font-extrabold text-slate-950 text-2xl flex items-center gap-3">
+              <mat-icon class="text-indigo-650 text-[28px] w-7 h-7">auto_awesome</mat-icon>
+              市面成熟且可即时拉取借鉴的 Skill 常用技能推荐
+            </h3>
+            <p class="text-base text-slate-500 mt-2 font-normal font-normal">这些技能方案代表了业界的极高标准与无缝支持，包含了详细的财务法务增益点：</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- 优质 Skill 1 -->
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-indigo-400 transition-all">
+              <div class="space-y-4">
+                <span class="text-xs font-extrabold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded tracking-wider block w-max">Anthropic 官方 Agent 技能库</span>
+                <h4 class="font-bold text-lg text-slate-950 flex items-center gap-2">
+                  <mat-icon class="text-indigo-600">verified</mat-icon> Anthropic 官方智能体技能
+                </h4>
+                <div class="space-y-3 pt-2">
+                  <p class="text-sm text-slate-650 leading-relaxed font-normal">
+                    <strong>核心功能：</strong>Anthropic 官方 Agent 技能仓库，内含由其与合作伙伴共同维护的一系列高质量基础和进阶 Skill 模块。
+                  </p>
+                  <p class="text-xs text-slate-600 font-mono bg-white border border-slate-200 p-2 rounded-lg break-all">
+                    <strong>📍 官方开源主页：</strong><br><a href="https://github.com/anthropics/skills" target="_blank" class="text-indigo-300-custom hover:underline font-bold font-semibold">github:anthropics/skills</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 优质 Skill 2 -->
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-teal-400 transition-all">
+              <div class="space-y-4">
+                <span class="text-xs font-extrabold text-teal-700 bg-teal-50 px-2.5 py-1 rounded tracking-wider block w-max">Superpowers 智能技能框架</span>
+                <h4 class="font-bold text-lg text-slate-950 flex items-center gap-2">
+                  <mat-icon class="text-teal-600">tips_and_updates</mat-icon> Superpowers 智能体外设
+                </h4>
+                <div class="space-y-3 pt-2">
+                  <p class="text-sm text-slate-650 leading-relaxed font-normal">
+                    <strong>核心功能：</strong>专注于开发高效、无缝整合的智能体（Agentic）技能框架外设与软件开发方法论，提供跨操作系统的能力扩展。
+                  </p>
+                  <p class="text-xs text-slate-600 font-mono bg-white border border-slate-200 p-2 rounded-lg break-all">
+                    <strong>📍 官方获取地址：</strong><br><a href="https://github.com/obra/superpowers" target="_blank" class="text-teal-700 hover:underline font-bold font-semibold">github:obra/superpowers</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 优质 Skill 3 -->
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:border-purple-400 transition-all">
+              <div class="space-y-4">
+                <span class="text-xs font-extrabold text-purple-700 bg-purple-50 px-2.5 py-1 rounded tracking-wider block w-max">Taste-Skill 审美与品质技能</span>
+                <h4 class="font-bold text-lg text-slate-950 flex items-center gap-2">
+                  <mat-icon class="text-purple-650">palette</mat-icon> Taste-Skill 品味拯救计划
+                </h4>
+                <div class="space-y-3 pt-2">
+                  <p class="text-sm text-slate-650 leading-relaxed font-normal">
+                    <strong>核心功能：</strong>旨在赋予您的 AI 绝对优质的品味与美感，防止智能体生成令人产生审美疲劳的、格式化和乏味的垃圾文字。
+                  </p>
+                  <p class="text-xs text-slate-600 font-mono bg-white border border-slate-200 p-2 rounded-lg break-all">
+                    <strong>📍 推荐开源地址：</strong><br><a href="https://github.com/Leonxlnx/taste-skill" target="_blank" class="text-purple-650 hover:underline font-bold font-semibold">github:Leonxlnx/taste-skill</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CLI 安装和使用技能+引用文件：大幅调大字体以便在大屏幕上进行操作教学 -->
+        <div class="bg-white border border-slate-200 p-8 sm:p-10 rounded-[2.5rem] space-y-6 shadow-sm">
+          <div class="border-b border-slate-100 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <mat-icon class="text-indigo-600 text-[32px] w-8 h-8">menu_book</mat-icon>
+              <h3 class="font-black text-slate-950 text-2xl">操作指南：如何安装 Skill 与快速关联本地文件</h3>
+            </div>
+            <span class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-lg tracking-wider uppercase">极低门槛 · 自由切换</span>
+          </div>
+          
+          <p class="text-base text-slate-600 leading-relaxed font-normal max-w-4xl">
+            为了让业务骨干与无技术背景的小白用户皆能秒级上手，Claude Code 提供了<strong>双轨并行操作模式</strong>。我们更<strong>强烈推荐您使用纯中文自然语言</strong>，不再需要记忆和背诵任何复杂的终端代码。
+          </p>
+
+          <!-- 双轨对比核心卡片 -->
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 pt-4">
+            <!-- 模式一：极客命令流 (适合效率狂魔) -->
+            <div class="bg-slate-950 text-slate-100 p-8 rounded-[2rem] border border-slate-800 space-y-6 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 text-cyan-400">
+                  <mat-icon class="text-[24px]">terminal</mat-icon>
+                  <span class="text-lg font-extrabold tracking-wide uppercase font-mono">Mode A: 极客高阶命令流（底层原理协议）</span>
+                </div>
+                <p class="text-sm text-amber-300 font-bold leading-relaxed border-l-2 border-amber-300 pl-3">
+                  ⚠️ 提示：以下格式仅作为底层的转译细节。在实际使用中，我们彻底不需要记忆以下英文指令！直接口语向 Claude 说出想要干什么即可：
+                </p>
+                
+                <div class="space-y-4 pt-1">
+                  <!-- 应用一 -->
+                  <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-500 block">▼ 1. 交互中如何比对、指明本地文件：</span>
+                    <div class="bg-slate-900 border border-white/5 p-4 rounded-xl font-mono text-sm leading-relaxed space-y-1.5 shadow-inner">
+                      <span class="text-emerald-500 block"># 原始底层命令（不需要硬记）：</span>
+                      <span class="text-slate-350"><span class="text-cyan-400">claude-code</span> <span class="text-amber-300">/check_contract</span> <span class="text-cyan-400">@通用模板.docx</span> <span class="text-cyan-400">@本次供应商草案.txt</span></span>
+                      
+                      <span class="text-emerald-500 block pt-1.5 font-bold"># 💡 自然语言白话直接对它说即可（推荐！）：</span>
+                      <span class="text-slate-300 italic block">“帮我比对这两个文件，看看和模板有何出入”</span>
+                    </div>
+                  </div>
+                  
+                  <!-- 应用二 -->
+                  <div class="space-y-2">
+                    <span class="text-xs font-bold text-slate-500 block">▼ 2. 如何安装常驻技能包：</span>
+                    <div class="bg-slate-900 border border-white/5 p-4 rounded-xl font-mono text-sm leading-relaxed space-y-1.5 shadow-inner">
+                      <span class="text-emerald-500 block"># 原始底层命令（不需要硬记）：</span>
+                      <span class="text-slate-350"><span class="text-cyan-400">claude</span> skill install <span class="text-amber-300">https://github.com/anthropics/skills</span></span>
+                      
+                      <span class="text-emerald-500 block pt-1.5 font-bold"># 💡 自然语言白话直接对它说即可（推荐！）：</span>
+                      <span class="text-slate-300 italic block">“把这个 skills 仓库连网安装下”</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-xs text-slate-500 pt-4 border-t border-white/5 font-mono">
+                💡 优势：揭示底层协议。实际上，AI 会自动将用户的日常普通话瞬间翻译为对应运行调用。
+              </div>
+            </div>
+
+            <!-- 模式二：法务小白流 (零代码/一见倾心) -->
+            <div class="bg-indigo-50/50 p-8 rounded-[2rem] border-2 border-indigo-100 space-y-6 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3 text-indigo-900">
+                  <mat-icon class="text-[24px]">favorite</mat-icon>
+                  <span class="text-lg font-extrabold tracking-wide">Mode B: 法务小白“零恐惧”傻瓜流（拖拽与普通话）</span>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  根本不劳您去记忆什么 `@` 字符或去背代码指令，用最符合最常人手势、跟真人当面聊天一样的体感：
+                </p>
+                
+                <div class="space-y-4 pt-2">
+                  <!-- 应用一 -->
+                  <div class="bg-white border border-indigo-100 p-4 rounded-xl flex items-start gap-3 shadow-sm">
+                    <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg shrink-0"><mat-icon class="text-[20px]">pan_tool</mat-icon></div>
+                    <div class="space-y-1 text-sm text-slate-700 leading-relaxed">
+                      <strong class="font-extrabold text-slate-950 block">1. 鼠标轻轻拖拽，文件即刻上传锁定</strong>
+                      <span>
+                        完全没必要打字写 `@保密协议.docx`。只要在您的电脑文件管理器中，用鼠标直接<strong>选中那个文件直接拖进终端对话框中</strong>松手！
+                        Claude Code 会在后台自动完成文件绑定，您紧接着补一句大白话：“帮我把刚才拽进来的文件挑一下错”，它就能深度审查！
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- 应用二 -->
+                  <div class="bg-white border border-indigo-100 p-4 rounded-xl flex items-start gap-3 shadow-sm">
+                    <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg shrink-0"><mat-icon class="text-[20px]">record_voice_over</mat-icon></div>
+                    <div class="space-y-1 text-sm text-slate-700 leading-relaxed">
+                      <strong class="font-extrabold text-slate-950 block">2. 纯大白话命令，小克助理后台自动替您敲代码</strong>
+                      <span>
+                        听得懂普通话、懂您意图。您可以直接像使唤实习生一样打字告诉助理：
+                      </span>
+                      <div class="bg-slate-50 border border-slate-100 p-3 rounded-lg text-slate-650 font-normal italic space-y-1.5 mt-2">
+                        <p class="text-slate-950 font-semibold flex items-center gap-1.5"><mat-icon class="text-xs text-indigo-600">chat_bubble_outline</mat-icon> “帮我安装网上人家的技能包，链接是 https://github.com/xxxx”</p>
+                        <p class="text-slate-400 text-xs">ℹ︎ (小克理解后：后台自主帮你执行命令行，悄悄帮你安全安装，免去你的格式错误。)</p>
+                        
+                        <p class="text-slate-950 font-semibold flex items-center gap-1.5 pt-1.5 border-t border-slate-150-custom"><mat-icon class="text-xs text-indigo-600">chat_bubble_outline</mat-icon> “把桌上这个‘合同审查.json’变成备忘习惯，我等下要进行合同体检”</p>
+                        <p class="text-slate-400 text-xs">ℹ︎ (小克理解后：自动将其读取为 Skill 并永久在您电脑注册备忘。)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-xs text-slate-500 pt-4 border-t border-indigo-100 font-mono">
+                💡 优势：极致松弛惬意、零学习阻力、一用即会，让高压的合规部门彻底无痛“尝甜头”。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 长文档自制技能流程演示：多栏不对称现代排布 -->
+        <div class="bg-white border border-slate-200 p-8 sm:p-10 rounded-[2.5rem] space-y-8 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-rose-100 pb-5">
+            <h3 class="font-extrabold text-slate-950 text-2xl">如何“无痛三步”零代码灌输并固化常驻技能，看具体演练：</h3>
+            <span class="text-xs font-extrabold text-rose-700 bg-rose-50 px-3 py-1.5 rounded uppercase font-mono tracking-widest">
+              SOP Practice
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 法务实操 A -->
+            <div class="bg-slate-50 border-t-4 border-indigo-550 p-6 sm:p-8 rounded-b-3xl space-y-4">
+              <div class="flex items-center gap-2.5 text-slate-950 font-black text-lg">
+                <mat-icon class="text-indigo-600">gavel</mat-icon>
+                <span>法务实操 A · 自制【买卖合同付款红线哨兵】</span>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-slate-200/50 space-y-4 text-base leading-relaxed text-slate-600 font-normal">
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 1. 灌输合同付款规则：</strong>
+                  对助理喊话：“我教你个活，以后凡是我输入 <code>/payment_check</code> 时，你都去核对合同条款，只要发现我方付款比例在首期违规超过50%，或者约定了无条件无限期垫资的，全部标红警告！”
+                </div>
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 2. 丢入草案自测：</strong>
+                  将一纸首付款占 70% 且存在霸王垫资条款的意向书塞给它，观察其是否高保真、百分百精准捕捉到并给出警告。
+                </div>
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 3. 永久保存：</strong>
+                  看其正确无误，满意交代：“<strong>把刚刚这套分析归约动作封装存起成为永久技能，快捷代号命名为 payment_check</strong>”。
+                </div>
+              </div>
+            </div>
+
+            <!-- 法务实操 B -->
+            <div class="bg-slate-50 border-t-4 border-slate-550 p-6 sm:p-8 rounded-b-3xl space-y-4">
+              <div class="flex items-center gap-2.5 text-slate-950 font-black text-lg">
+                <mat-icon class="text-slate-600">assignment_turned_in</mat-icon>
+                <span>法务实操 B · 自制【知识产权外泄防御哨兵】</span>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-slate-200/50 space-y-4 text-base leading-relaxed text-slate-600 font-normal">
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 1. 灌输知识产权红线：</strong>
+                  告知助理：“给我记好：往后凡呼叫 <code>/check_ip_safe</code> 时，如果意向书中凡关于‘知识产权分配’或‘著作权保护’条款出现了‘成果共有、我方无条件转让’字样，统统找出告警。”
+                </div>
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 2. 自测分析校核：</strong>
+                  随手塞入本期最新供应商回执条款草稿，考察它对知识产权共有漏洞的警示精度。
+                </div>
+                <div>
+                  <strong class="text-indigo-650 font-black block text-base mb-1">Step 3. 永久保存：</strong>
+                  高品质捕获后，告知：“<strong>把这套审查逻辑永久存成名为 check_ip_safe 的快捷命令</strong>”。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 经验总结突出提示 -->
+          <div class="p-6 bg-indigo-50 border border-indigo-200 rounded-2xl flex gap-4 text-base text-indigo-950 font-semibold shadow-inner leading-relaxed">
+            <mat-icon class="text-indigo-600 shrink-0 text-[24px]">push_pin</mat-icon>
+            <p>
+              💡 极简课件法门：在您和部门的日常业务里，只要任意报表的对账和条款挑错步骤在本月里<strong>重复发生了 3 次以上</strong>，建议直接对其吩咐：“把这一次咱们对比的所有设定、口径、规章，归拢封装成专属的常驻 Skill 命令吧”。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 模块 04：合规与安全红线 (大型高醒目度区块) -->
+      <section id="security" class="scroll-mt-28 space-y-8">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-650 text-white flex items-center justify-center font-bold text-lg shadow-sm">04</div>
+          <h2 class="text-3xl font-black tracking-tight text-slate-950">合规与数据安全红线</h2>
+        </div>
+        
+        <!-- 红色侧边线高对比警示框 -->
+        <div class="bg-amber-50/50 border-l-4 border-amber-600 p-8 sm:p-10 rounded-r-[2.5rem] shadow-sm space-y-8">
+          
+          <div class="flex gap-4 items-start">
+             <div class="mt-1 font-black text-amber-600 text-xl">⚠️</div>
+             <div class="space-y-1">
+               <h3 class="font-black text-slate-950 text-lg">绝对严禁将真实机要密钥信息写入可见文件</h3>
+               <p class="text-base text-slate-650 leading-relaxed font-normal">绝不应当指挥助理直读或自建内置硬编码了真实机密环境支付密码、用户敏感身份证号、高管机密流水的材料，务必做好原始数据脱敏保护。</p>
+             </div>
+          </div>
+          
+          <div class="flex gap-4 items-start">
+             <div class="mt-1 font-black text-teal-650 text-xl">🔒</div>
+             <div class="space-y-1">
+               <h3 class="font-black text-slate-950 text-lg">企业商用安全性与模型脱敏保护</h3>
+               <p class="text-base text-slate-650 leading-relaxed font-normal">在大厂企业商用级专线对接下，用户的业务账单数据、计算偏差日志均有严格的沙盒隔离。<strong>请向部门放心宣贯：该类核心业务资产坚决不会被提供给外方模型提供商用于公开底座的模型训练。</strong></p>
+             </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+             <div class="mt-1 font-black text-indigo-650 text-xl">🎓</div>
+             <div class="space-y-1">
+               <h3 class="font-black text-slate-950 text-lg">由业务专家维持最后一审权威</h3>
+               <p class="text-base text-slate-650 leading-relaxed font-normal font-normal">工具在极秒钟内审完上百页内容能够极大舒缓视力与脑力，但对账结果及合同修改方案的发布，具有法定的执照资质约束。<strong>所有的结论在大屏幕投影过堂审阅后，必须由公司业务负责人或执证人员亲自核实复议后方可发布落地生效。</strong></p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 模块 05：分步实战大冲关 (高级实操版块) -->
+      <section id="practice" class="scroll-mt-28 space-y-8">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">05</div>
+          <h2 class="text-3xl font-black tracking-tight text-slate-950">分步实战大冲关 —— 专属业务场景演练</h2>
+        </div>
+
+        <p class="text-slate-650 text-lg leading-relaxed font-normal max-w-4xl">
+          为了帮助大家将所学内容彻底内化为生产力，请跟随以下<strong>四个逐步递进的实战演练任务</strong>，在本地动手完成一个完整的“法务数据看板”构建、重构与功能迭代：
+        </p>
+
+        <div class="space-y-8">
+          
+          <!-- 步骤一 -->
+          <div class="bg-white border text-slate-800 p-8 rounded-[2rem] border-slate-200 shadow-sm space-y-4 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold font-mono">1</span>
+                <h3 class="font-extrabold text-slate-950 text-lg sm:text-xl">【任务一】提供 Excel 数据源，并要求 Claude 深度解析</h3>
+              </div>
+              <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg uppercase tracking-wider">第一关 · 数据吞吐</span>
+            </div>
+            
+            <p class="text-base text-slate-650 leading-relaxed font-normal">
+              <strong>情境剧本：</strong>假设您本地有一个名为 <code class="bg-slate-100 text-slate-900 px-1 py-0.5 rounded font-mono font-bold text-sm">采购合同账目清单.xlsx</code> 的 Excel 表格，存放了数十家供应商的合同金额、违约金比例以及合同状态等关键条目。
+            </p>
+            
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-400 block uppercase tracking-widest">在控制台终端中，直接输入以下指令：</span>
+              <div class="bg-slate-900 border border-white/5 p-5 rounded-xl font-mono text-base space-y-1 shadow-inner leading-relaxed">
+                <p class="text-emerald-400">“请帮我读取并深度解析本地的 <span class="bg-white/10 text-white px-1.5 py-0.5 rounded">@采购合同账目清单.xlsx</span> 数据源。</p>
+                <p class="text-emerald-400">梳理出：有哪些供应商？总采购金额是多少？</p>
+                <p class="text-emerald-400">并找出其中‘违约金赔偿上限超过 40%’的异常高风险合同，将提取的结果保存为 JSON 格式备用。”</p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-500 font-medium">
+              💡 <strong>教学透视：</strong>这一步锻炼了助理使用本地探针编写轻量脚本（如 Node-xlsx / Python-pandas）自主抽取 Excel 网格特征的能力，省去人工逐行过滤。
+            </p>
+          </div>
+
+          <!-- 步骤二 -->
+          <div class="bg-white border text-slate-800 p-8 rounded-[2rem] border-slate-200 shadow-sm space-y-4 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold font-mono">2</span>
+                <h3 class="font-extrabold text-slate-950 text-lg sm:text-xl">【任务二】基于解析后的 JSON 数据，一键生成可视化数据看板</h3>
+              </div>
+              <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-lg uppercase tracking-wider">第二关 · 前端自建</span>
+            </div>
+            
+            <p class="text-base text-slate-650 leading-relaxed font-normal">
+              <strong>情境剧本：</strong>有了结构化的干净 JSON 数据后，仅仅看干瘪的数据不够直观，我们需要让助理一键设计出一个优雅大气的网页看板展示给主管看。
+            </p>
+            
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-400 block uppercase tracking-widest">向 Claude 呼叫以下指令：</span>
+              <div class="bg-slate-900 border border-white/5 p-5 rounded-xl font-mono text-base space-y-1 shadow-inner leading-relaxed">
+                <p class="text-slate-300">“请基于刚才解析出的合同数据 JSON 和异常合同列表，</p>
+                <p class="text-slate-300">在本地生成一个极简漂亮的 HTML 单页面数据看板 <span class="bg-white/10 text-white px-1.5 py-0.5 rounded">contract_dashboard.html</span>。</p>
+                <p class="text-slate-300">用 Tailwind CSS 渲染，页面顶部需要有一个包含核心总金额的‘数据大屏仪表盘’，</p>
+                <p class="text-slate-300">并用 D3.js 绘制一个‘供应商合同金额对比条形图’，下方展示高风险异常合同表格。”</p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-500 font-medium">
+              💡 <strong>教学透视：</strong>学员可以在双击该 HTML 文件时立刻目睹一个带响应式条形图和高亮财务红线的高品质数据看板，完美克服“代码恐惧症”。
+            </p>
+          </div>
+
+          <!-- 步骤三 -->
+          <div class="bg-white border text-slate-800 p-8 rounded-[2rem] border-slate-200 shadow-sm space-y-4 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center font-bold font-mono">3</span>
+                <h3 class="font-extrabold text-slate-950 text-lg sm:text-xl">【任务三】安装并加载 Taste-Skill，重新润色重构数据看板</h3>
+              </div>
+              <span class="px-2.5 py-1 bg-purple-50 text-purple-700 text-xs font-bold rounded-lg uppercase tracking-wider">第三关 · 消除“AI 味道”</span>
+            </div>
+            
+            <p class="text-base text-slate-650 leading-relaxed font-normal">
+              <strong>情境剧本：</strong>刚刚生成的页面排版或许有些单调，充满了中规中矩的配图和略带廉价的 AI 蓝绿味渐变。现在，我们要拉取业界的 taste-skill，让助理的“审美细胞”觉醒，重构看板外观并使之高端专业。
+            </p>
+            
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-400 block uppercase tracking-widest font-semibold text-purple-750">⭐ 发挥自然语言威力：对 Claude 只需用全大白话讲出您的需求 ⭐</span>
+              <div class="bg-slate-900 border border-white/5 p-6 rounded-2xl shadow-inner font-mono text-base text-purple-300 leading-relaxed border-l-4 border-purple-500">
+                <p class="text-xs text-slate-500 mb-2 font-bold select-none">💬 您只需要对 Claude 呼唤这样一段普通闲聊话：</p>
+                <p class="text-[15px] leading-relaxed">
+                  “Claude，请帮我联网拉取并安装加载 GitHub 上的品味拯救插件 taste-skill （链接是 <span class="bg-white/10 text-white px-1.5 py-0.5 rounded">https://github.com/Leonxlnx/taste-skill</span>）。
+                </p>
+                <p class="text-[15px] leading-relaxed mt-2">
+                  安装并加载完毕后，请立即针对我们刚才生成的 <span class="bg-white/10 text-white px-1.5 py-0.5 rounded">contract_dashboard.html</span> 看板页面，应用该品味机制进行审美重构！
+                </p>
+                <p class="text-[15px] leading-relaxed mt-2">
+                  帮我彻底消除花哨廉价的 AI 蓝绿味渐变底色，采用极其专业克制的‘瑞士冷灰色系极简排版’。调整页面行高、间距以及数据卡片的倒角，优化图表边距，大幅度拉高全站的视觉无障碍对比度与高级设计品质。开始吧！”
+                </p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-500 font-medium">
+              💡 <strong>教学透视：</strong>通过对比，大家会清晰地发现重构前后的细节差异——排版间距彻底合理、色彩无障碍对比度大幅拉高、多余杂乱的网格线消逝，产出的界面质感呈现大厂高级设计师的专业调调。
+            </p>
+          </div>
+
+          <!-- 步骤四 -->
+          <div class="bg-white border text-slate-800 p-8 rounded-[2rem] border-slate-200 shadow-sm space-y-4 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold font-mono">4</span>
+                <h3 class="font-extrabold text-slate-950 text-lg sm:text-xl">【任务四】增加更高价值的高级业务联动与分析导出功能</h3>
+              </div>
+              <span class="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg uppercase tracking-wider">第四关 · 业务深耕</span>
+            </div>
+            
+            <p class="text-base text-slate-650 leading-relaxed font-normal">
+              <strong>情境剧本：</strong>看板有了精美的皮囊，还需要丰富的内涵。我们要给它添加交互与实用的法务导出功能。
+            </p>
+            
+            <div class="space-y-3 pt-2">
+              <span class="text-xs font-bold text-slate-400 block uppercase tracking-widest">吩咐 Claude 执行最后的功能升级：</span>
+              <div class="bg-slate-900 border border-white/5 p-5 rounded-xl font-mono text-base space-y-1 shadow-inner leading-relaxed">
+                <p class="text-amber-200">“请为 <span class="bg-white/10 text-white px-1.5 py-0.5 rounded">contract_dashboard.html</span> 看板增加下述两个高价值专属功能：</p>
+                <p class="text-amber-200">1. **快捷搜索与筛选**：在表格上方新增一个输入框，支持根据‘供应商名称’或‘合同状态’实时搜索过滤显示。</p>
+                <p class="text-amber-200">2. **法务大转盘导出**：添加一个‘一键生成 Word 财务合规合规警告陈述’的下载按钮，点击即可自动在本地生成一段摘要并可保存到电脑。”</p>
+              </div>
+            </div>
+            <p class="text-sm text-slate-500 font-medium">
+              💡 <strong>教学透视：</strong>这一步真正将静态大屏变成了具有高频使用场景、高度符合无纸化协同对账环境的高保真法务业务辅助小产品。
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 清爽的中式页尾 -->
+      <footer id="main-footer" class="pt-10 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-5 text-sm text-slate-400 font-medium">
+        <div>© 2026 企业数字化效率提升系列培训 · 保留所有权利</div>
+        <div class="flex gap-4 text-slate-500">
+          <span>助理自动化进阶专期课件</span>
+          <span>·</span>
+          <span>非研发快速上手实战指南</span>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+  <router-outlet />
+</div>

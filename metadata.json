@@ -1,0 +1,6 @@
+{
+  "name": "自动化数字助理培训指南",
+  "description": "财务与法务专属：用 Claude Code 打造你的自动化数字助理培训平台",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
